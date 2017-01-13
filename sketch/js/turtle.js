@@ -5,6 +5,7 @@ export default class Turtle {
     this.todo = s;
     this.len = l;
     this.theta = t;
+    this.stalkMaxLen = this.len * 0.2;
   }
 
   draw() {
@@ -24,6 +25,12 @@ export default class Turtle {
         sketch.push();
         this.len *= 2 / 3;
       } else if (c === ']') {
+        if (this.len <= this.stalkMaxLen) {
+          // Draw leaf
+          sketch.noStroke();
+          sketch.fill(102, 148, 81);
+          sketch.ellipse(0, 0, 10, 4);
+        }
         sketch.pop();
         this.len *= 3 / 2;
       }
